@@ -19,10 +19,10 @@ REQUIRED_CONFIG_KEYS = [
     'user_agent'
 ]
 
-def do_discover():
+def do_discover(schema_dir):
 
     LOGGER.info('Starting discover')
-    catalog = discover()
+    catalog = discover(schema_dir)
     json.dump(catalog.to_dict(), sys.stdout, indent=2)
     LOGGER.info('Finished discover')
 
@@ -37,12 +37,13 @@ def main():
                           parsed_args.config['server_subdomain'],
                           parsed_args.config['user_agent']) as client:
 
+        schema_dir = parsed_args.config.get("schema_dir", "schemas")
         state = {}
         if parsed_args.state:
             state = parsed_args.state
 
         if parsed_args.discover:
-            do_discover()
+            do_discover(schema_dir)
         elif parsed_args.catalog:
             sync(client=client,
                  config=parsed_args.config,
