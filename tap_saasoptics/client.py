@@ -130,7 +130,11 @@ class SaaSOpticsClient(object):
             LOGGER.error('Error status_code = {}'.format(response.status_code))
             raise_for_error(response)
         else:
-            resp = response.json()
+            try:
+                resp = response.json()
+            except:
+                LOGGER.critical(resp)
+                raise
             if 'results' in resp:
                 return True
             else:
