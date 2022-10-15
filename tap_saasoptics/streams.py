@@ -33,9 +33,9 @@ STREAMS = {
     'invoices': {
         'key_properties': ['id'],
         'replication_method': 'INCREMENTAL',
-        'replication_keys': ['modified'],
-        'bookmark_query_field_from': 'modified__gte',
-        'bookmark_query_field_to': 'modified__lte',
+        'replication_keys': ['auditentry__modified'],
+        'bookmark_query_field_from': 'auditentry__modified__gte',
+        'bookmark_query_field_to': 'auditentry__modified__lte',
         'bookmark_type': 'datetime'
     },
     'items': {
