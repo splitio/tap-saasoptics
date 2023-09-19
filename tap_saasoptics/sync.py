@@ -4,7 +4,8 @@ import singer
 from singer import metrics, metadata, Transformer, utils
 from singer.utils import strptime_to_utc, strftime
 from tap_saasoptics.transform import transform_json
-from tap_saasoptics.streams import STREAMS
+from tap_saasoptics.streams import get_streams
+
 
 LOGGER = singer.get_logger()
 
@@ -276,9 +277,11 @@ def update_currently_syncing(state, stream_name):
     singer.write_state(state)
 
 
-def sync(client, config, catalog, state):
+def sync(client, config, catalog, state, is_full_sync=False):
     if 'start_date' in config:
         start_date = config['start_date']
+
+    STREAMS = get_streams(is_full_sync)
 
     # Get selected_streams from catalog, based on state last_stream
     #   last_stream = Previous currently synced stream, if the load was interrupted

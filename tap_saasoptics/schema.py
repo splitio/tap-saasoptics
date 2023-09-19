@@ -1,7 +1,10 @@
 import os
 import json
 from singer import metadata
-from tap_saasoptics.streams import STREAMS
+from tap_saasoptics.streams import get_streams
+
+
+STREAMS = get_streams()
 
 # Reference:
 # https://github.com/singer-io/getting-started/blob/master/docs/DISCOVERY_MODE.md#Metadata
@@ -9,12 +12,13 @@ from tap_saasoptics.streams import STREAMS
 def get_abs_path(path):
     return os.path.join(os.path.dirname(os.path.realpath(__file__)), path)
 
-def get_schemas():
+def get_schemas(schema_dir="schemas"):
     schemas = {}
     field_metadata = {}
 
     for stream_name, stream_metadata in STREAMS.items():
-        schema_path = get_abs_path('schemas/{}.json'.format(stream_name))
+        # schema_path = get_abs_path(f'{schema_dir}/{stream_name}.json')
+        schema_path = f'{schema_dir}/{stream_name}.json'
         with open(schema_path) as file:
             schema = json.load(file)
         schemas[stream_name] = schema

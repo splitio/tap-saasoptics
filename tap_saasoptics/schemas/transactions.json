@@ -185,7 +185,9 @@
     },
     "renewal_of_set": {
       "type": ["null", "array"],
-      "items": {}
+      "items": {
+          "type": "string"
+      }
     },
     "renewal_probability": {
       "type": ["null", "number"],
