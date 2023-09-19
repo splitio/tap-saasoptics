@@ -37,6 +37,13 @@ def main():
                           parsed_args.config['server_subdomain'],
                           parsed_args.config['user_agent']) as client:
 
+        is_full_sync = parsed_args.config.get("full_sync", "full_sync")
+
+        if is_full_sync:
+            LOGGER.info('Running on full-sync mode')
+        else:
+            LOGGER.info('Running on incremental-sync mode')
+
         schema_dir = parsed_args.config.get("schema_dir", "schemas")
         state = {}
         if parsed_args.state:
@@ -48,7 +55,8 @@ def main():
             sync(client=client,
                  config=parsed_args.config,
                  catalog=parsed_args.catalog,
-                 state=state)
+                 state=state,
+                 is_full_sync=is_full_sync)
 
 if __name__ == '__main__':
     main()

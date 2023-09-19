@@ -1,7 +1,10 @@
 import os
 import json
 from singer import metadata
-from tap_saasoptics.streams import STREAMS
+from tap_saasoptics.streams import get_streams
+
+
+STREAMS = get_streams()
 
 # Reference:
 # https://github.com/singer-io/getting-started/blob/master/docs/DISCOVERY_MODE.md#Metadata
