@@ -49,7 +49,7 @@ STREAMS = {
     'transactions': {
         'key_properties': ['id'],
         'replication_method': 'INCREMENTAL',
-        'replication_keys': ['auditentry__modified'],
+        'replication_keys': ['modified'],
         'bookmark_query_field_from': 'auditentry__modified__gte',
         'bookmark_query_field_to': 'auditentry__modified__lte',
         'bookmark_type': 'datetime'
