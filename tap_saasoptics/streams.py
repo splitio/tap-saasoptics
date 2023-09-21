@@ -134,7 +134,7 @@ STREAMS = {
         'replication_keys': ['deleted'],
         'bookmark_type': 'datetime'
     },
-   'deleted_customers': {
+    'deleted_customers': {
        'path': 'customers/deleted',
        'key_properties': ['id'],
        'replication_method': 'INCREMENTAL',

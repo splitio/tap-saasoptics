@@ -19,10 +19,10 @@ REQUIRED_CONFIG_KEYS = [
     'user_agent'
 ]
 
-def do_discover(schema_dir):
+def do_discover(schema_dir, is_full_sync=False):
 
     LOGGER.info('Starting discover')
-    catalog = discover(schema_dir)
+    catalog = discover(schema_dir, is_full_sync)
     json.dump(catalog.to_dict(), sys.stdout, indent=2)
     LOGGER.info('Finished discover')
 
