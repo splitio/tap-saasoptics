@@ -134,18 +134,18 @@ STREAMS = {
         'replication_keys': ['deleted'],
         'bookmark_type': 'datetime'
     },
-
-#    'deleted_customers': {
-#        'path': 'customers/deleted',
-#        'key_properties': ['id'],
-#        'replication_method': 'INCREMENTAL',
-#        'replication_keys': ['deleted'],
-#        'bookmark_type': 'datetime'
-#    }
+   'deleted_customers': {
+       'path': 'customers/deleted',
+       'key_properties': ['id'],
+       'replication_method': 'INCREMENTAL',
+       'replication_keys': ['deleted'],
+       'bookmark_type': 'datetime'
+   }
 }
 
 def get_streams(is_full_sync=False):
     streams = dict(STREAMS)
+
     # Use modified timestamp to detect the incremental update instead of auditentry_modified
     # See https://github.com/singer-io/tap-saasoptics/issues/5
     if not is_full_sync:

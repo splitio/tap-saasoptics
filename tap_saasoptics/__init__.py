@@ -50,7 +50,7 @@ def main():
             state = parsed_args.state
 
         if parsed_args.discover:
-            do_discover(schema_dir)
+            do_discover(schema_dir, is_full_sync=is_full_sync)
         elif parsed_args.catalog:
             sync(client=client,
                  config=parsed_args.config,
