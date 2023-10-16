@@ -16,8 +16,8 @@ def get_schemas(schema_dir="schemas", is_full_sync=False):
 
     STREAMS = get_streams(is_full_sync)
     for stream_name, stream_metadata in STREAMS.items():
-        # schema_path = get_abs_path(f'{schema_dir}/{stream_name}.json')
-        schema_path = f'{schema_dir}/{stream_name}.json'
+        schema_path = get_abs_path(f'{schema_dir}/{stream_name}.json')
+        #schema_path = f'{schema_dir}/{stream_name}.json'
         with open(schema_path) as file:
             schema = json.load(file)
         schemas[stream_name] = schema
